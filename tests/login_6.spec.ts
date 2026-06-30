@@ -1,10 +1,11 @@
-import {test, expect} from "@playwright/test"
+import { test, expect } from "@playwright/test";
+import { Loginpage } from "../Playwright_Practice_typescript_own/pages/Loginpage";
 
+test("developing the login page with github 3", async ({ page }) => {
+  const loginPageObj = new Loginpage(page);
 
-test(" devloping the login page wiith github 3",async({page})=>{
+  await loginPageObj.openApplication();
+  await loginPageObj.login();
 
-
-await page.goto("https://www.amazon.in/");
-await expect(page).toHaveTitle("amazon");
-await page.getByPlaceholder("Search Amazon.in").fill("samsung")
-})
+  await expect(page).toHaveURL(/inventory.html/);
+});
